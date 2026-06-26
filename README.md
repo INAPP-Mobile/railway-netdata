@@ -1,0 +1,142 @@
+# Netdata — Real-Time Infrastructure Monitoring
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/railway-netdata)
+[![Netdata](https://img.shields.io/badge/Netdata-v2.10.3-00AB44?logo=netdata)](https://github.com/netdata/netdata)
+[![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![GitHub Stars](https://img.shields.io/github/stars/netdata/netdata?style=social)](https://github.com/netdata/netdata)
+
+<p align="center">
+  <img src="./og-image.svg" alt="Netdata on Railway" width="600">
+</p>
+
+Deploy **Netdata** on Railway with one click — the most energy-efficient, real-time infrastructure monitoring platform. Monitor every metric from every second across your entire infrastructure with zero configuration.
+
+---
+
+## Features
+
+- **Real-time monitoring** — per-second data collection and visualization
+- **Zero configuration** — auto-discovers everything on the nodes it runs
+- **ML-powered anomaly detection** — unsupervised machine learning on every metric
+- **300+ integrations** — monitors containers, databases, web servers, and more
+- **Interactive dashboards** — rich, interactive charts without query languages
+- **Low resource usage** — ~1% CPU on a modern server, ~0.5 bytes per sample
+- **Secure & distributed** — no central data collection; your data stays on your infrastructure
+- **Netdata Cloud ready** — optionally connect to [Netdata Cloud](https://app.netdata.cloud) for multi-node observability
+
+---
+
+## Environment Variables
+
+| Variable | Default | Description |
+|---|---|---|
+| `NETDATA_PORT` | `19999` | Port Netdata listens on |
+| `PGID` | `1000` | Netdata process group ID |
+| `DOCKER_GROUP_ID` | `1000` | Docker group ID for container monitoring |
+| `NETDATA_CLAIM_TOKEN` | *(optional)* | Claim token to connect to Netdata Cloud |
+| `NETDATA_CLAIM_URL` | *(optional)* | Netdata Cloud claim URL |
+
+---
+
+## Architecture
+
+```
+┌─────────────────────────────────────────────────┐
+│                    Railway Container              │
+│                                                   │
+│  ┌───────────────────────────────────────────┐   │
+│  │            Netdata Agent v2.10.3           │   │
+│  │                                             │   │
+│  │  ┌─────────┐ ┌─────────┐ ┌─────────────┐  │   │
+│  │  │ Metrics  │ │ Health  │ │ ML Detection│  │   │
+│  │  │ Collector│ │ Alarms  │ │ & Anomalies │  │   │
+│  │  └────┬────┘ └────┬────┘ └──────┬──────┘  │   │
+│  │       │            │             │           │   │
+│  │  ┌────▼────────────▼─────────────▼──────┐   │   │
+│  │  │         Web Dashboard (Port 19999)     │   │   │
+│  │  │   ┌──────────────────────────────┐     │   │   │
+│  │  │   │  /api/v1/info  (Health Check)│     │   │   │
+│  │  │   └──────────────────────────────┘     │   │   │
+│  │  └──────────────────────────────────────┘   │   │
+│  └───────────────────────────────────────────┘   │
+│                                                   │
+│  ┌───────────────────────────────────────────┐   │
+│  │         Persistent Volume (Metrics)        │   │
+│  │         /var/lib/netdata                   │   │
+│  └───────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────┘
+```
+
+Netdata runs as a single container with a persistent volume for historical metrics data. The health check endpoint at `/api/v1/info` ensures Railway can monitor service availability.
+
+---
+
+## Screenshots
+
+<p float="left">
+  <img src="./template-icon.svg" alt="Netdata Dashboard" width="200">
+  <img src="./og-image.svg" alt="Netdata Preview" width="400">
+</p>
+
+---
+
+## Getting Started
+
+### Deploy on Railway
+
+1. Click the **Deploy on Railway** button above
+2. Configure any environment variables (optional)
+3. Click deploy
+4. Access the Netdata dashboard at `https://<your-railway-url>:19999`
+
+### Local Development
+
+```bash
+# Build the Docker image
+docker build -t railway-netdata .
+
+# Run the container
+docker run -d \
+  --name netdata \
+  -p 19999:19999 \
+  -v netdata-data:/var/lib/netdata \
+  railway-netdata
+
+# Verify it's running
+curl http://localhost:19999/api/v1/info
+```
+
+---
+
+## Troubleshooting
+
+**Health check failing?**
+The startup period is 60 seconds. Netdata needs time to initialize metric collectors. If it persists, check logs: `railway logs`.
+
+**Port already in use?**
+Change the `NETDATA_PORT` environment variable to an available port.
+
+**Not seeing metrics?**
+Netdata auto-discovers services running on the same system. Ensure the services you want to monitor are running and network-accessible.
+
+**Volume not persisting?**
+The `/var/lib/netdata` volume stores historical metrics. On Railway, volumes persist across redeploys but not across environments. Refer to [Railway volumes documentation](https://docs.railway.app/reference/volumes) for details.
+
+---
+
+## Updating Netdata
+
+This template pins Netdata to version v2.10.3. To update:
+
+1. Update the `FROM` line in `Dockerfile` to the desired version tag
+2. Rebuild and redeploy
+
+Check [Netdata Releases](https://github.com/netdata/netdata/releases) for the latest version.
+
+---
+
+## License
+
+Netdata is [GPL-3.0 licensed](https://github.com/netdata/netdata/blob/master/LICENSE).
+
+This Railway template is provided by [INAPP-Mobile](https://github.com/INAPP-Mobile). Not affiliated with or endorsed by Netdata.
