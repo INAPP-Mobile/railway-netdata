@@ -71,7 +71,64 @@ Netdata runs as a single container with a persistent volume for historical metri
 
 ---
 
-## Screenshots
+## Deploy and Host
+
+### About Hosting
+
+Netdata runs as a single Docker container with a persistent volume for metrics history. It requires no external database, no message queue, and no sidecar services. The container auto-discovers all running services on the same node and begins collecting metrics immediately — CPU, memory, disk, network, containers, and 300+ other integrations — with zero configuration.
+
+Railway provides automatic HTTPS, global CDN, health monitoring, and persistent volumes. The default health check at `/api/v1/info` ensures Railway can monitor service availability.
+
+- **Default Port:** 19999 (configurable via `NETDATA_PORT`)
+- **Health Check:** `GET /api/v1/info` — returns HTTP 200 when ready
+- **Startup Time:** ~2 seconds (Netdata is extremely lightweight)
+- **Resource Usage:** ~1% CPU, ~110MB RAM on a modern server
+
+### Health Endpoint
+
+Railway uses the following endpoint for health checks:
+- **URL:** `/api/v1/info`
+- **Timeout:** 30 seconds
+- **Start period:** 60 seconds (allows metric collectors to initialize)
+
+---
+
+## Why Deploy Netdata on Railway?
+
+| Feature | Benefit |
+|---------|---------|
+| **Zero configuration** | Auto-discovers everything — just deploy and see dashboards instantly |
+| **Extremely lightweight** | ~1% CPU, ~0.5 bytes per sample — fits comfortably on free tier |
+| **300+ integrations** | Monitors containers, databases, web servers, and more out of the box |
+| **ML-powered anomaly detection** | Unsupervised machine learning on every metric, no training data needed |
+| **Real-time dashboards** | Per-second data with interactive charts — no query languages required |
+| **Secure & distributed** | Your data stays on your infrastructure; no central collection point |
+| **Persistent metrics** | Railway volumes retain historical data across redeploys |
+
+With Railway, you get automatic HTTPS, global CDN, health monitoring, and scalable infrastructure — without managing servers.
+
+---
+
+## Common Use Cases
+
+- **Server monitoring** — Track CPU, memory, disk, and network across all your Railway services
+- **Container observability** — See what's happening inside your containers with per-second granularity
+- **Anomaly detection** — ML-powered alerts when metrics deviate from learned baselines
+- **Capacity planning** — Historical dashboards to understand resource trends and growth patterns
+- **Incident response** — Real-time dashboards during outages to identify root causes faster
+
+---
+
+## Dependencies for Netdata
+
+### Deployment Dependencies
+
+- **Runtime:** Netdata v2.10.3 (bundled in the container image)
+- **Storage:** Persistent volume at `/var/lib/netdata` for historical metrics
+- **External access:** Port 19999 (configurable) for the web dashboard and API
+- **Optional:** Netdata Cloud claim token for multi-node observability (no account required for single-node use)
+
+---
 
 <p float="left">
   <img src="./template-icon.svg" alt="Netdata Dashboard" width="200">
