@@ -13,5 +13,4 @@ USER netdata
 # Log to stdout
 ENV NETDATA_LISTENER_PORT=${NETDATA_PORT}
 
-ENTRYPOINT ["/usr/sbin/netdata"]
-CMD ["-D", "-s", "/host", "-p", "${NETDATA_PORT}"]
+ENTRYPOINT ["/bin/sh", "-c", "exec /usr/sbin/netdata -D -s /host -p ${NETDATA_PORT}"]
