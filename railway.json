@@ -9,12 +9,6 @@
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 5,
     "healthcheckPath": "/api/v1/info",
-    "healthcheckTimeout": 10,
-    "volumeMounts": [
-      {
-        "name": "netdata-data",
-        "mountPath": "/var/lib/netdata"
-      }
-    ]
+    "healthcheckTimeout": 10
   }
 }
