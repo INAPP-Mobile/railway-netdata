@@ -1,0 +1,27 @@
+{
+  "NETDATA_PORT": {
+    "defaultValue": "19999",
+    "description": "Port Netdata listens on for the web dashboard and API.",
+    "isOptional": true
+  },
+  "PGID": {
+    "defaultValue": "1000",
+    "description": "Process group ID for the Netdata process.",
+    "isOptional": true
+  },
+  "DOCKER_GROUP_ID": {
+    "defaultValue": "1000",
+    "description": "Docker group ID for container monitoring. Must match the host's docker group ID to access the Docker socket.",
+    "isOptional": true
+  },
+  "NETDATA_CLAIM_TOKEN": {
+    "defaultValue": "",
+    "description": "Claim token to connect this node to Netdata Cloud for multi-node observability.",
+    "isOptional": true
+  },
+  "NETDATA_CLAIM_URL": {
+    "defaultValue": "https://app.netdata.cloud",
+    "description": "Netdata Cloud claim URL. Defaults to https://app.netdata.cloud.",
+    "isOptional": true
+  }
+}
