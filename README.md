@@ -6,7 +6,7 @@
 [![GitHub Stars](https://img.shields.io/github/stars/netdata/netdata?style=social)](https://github.com/netdata/netdata)
 
 <p align="center">
-  <img src="./og-image.svg" alt="Netdata on Railway" width="600">
+  <img src="https://raw.githubusercontent.com/INAPP-Mobile/railway-netdata/main/og-image.svg" alt="Netdata on Railway" width="600">
 </p>
 
 Deploy **Netdata** on Railway with one click — the most energy-efficient, real-time infrastructure monitoring platform. Monitor every metric from every second across your entire infrastructure with zero configuration.
@@ -127,8 +127,8 @@ With Railway, you get automatic HTTPS, global CDN, health monitoring, and scalab
 ---
 
 <p float="left">
-  <img src="./template-icon.svg" alt="Netdata Dashboard" width="200">
-  <img src="./og-image.svg" alt="Netdata Preview" width="400">
+  <img src="https://raw.githubusercontent.com/INAPP-Mobile/railway-netdata/main/template-icon.svg" alt="Netdata Dashboard" width="200">
+  <img src="https://raw.githubusercontent.com/INAPP-Mobile/railway-netdata/main/og-image.svg" alt="Netdata Preview" width="400">
 </p>
 
 ---
