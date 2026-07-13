@@ -1,6 +1,6 @@
 # Netdata — Real-Time Infrastructure Monitoring
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/railway-netdata)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/netdata-2)
 [![Netdata](https://img.shields.io/badge/Netdata-v2.10.3-00AB44?logo=netdata)](https://github.com/netdata/netdata)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![GitHub Stars](https://img.shields.io/github/stars/netdata/netdata?style=social)](https://github.com/netdata/netdata)
@@ -31,10 +31,6 @@ Deploy **Netdata** on Railway with one click — the most energy-efficient, real
 | Variable | Default | Description |
 |---|---|---|
 | `NETDATA_PORT` | `19999` | Port Netdata listens on |
-| `PGID` | `1000` | Netdata process group ID |
-| `DOCKER_GROUP_ID` | `1000` | Docker group ID for container monitoring |
-| `NETDATA_CLAIM_TOKEN` | *(optional)* | Claim token to connect to Netdata Cloud |
-| `NETDATA_CLAIM_URL` | *(optional)* | Netdata Cloud claim URL |
 
 ---
 
