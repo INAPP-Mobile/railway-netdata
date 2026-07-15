@@ -1,6 +1,6 @@
 # Netdata — Real-Time Infrastructure Monitoring
 
-[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/netdata-2)
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.com/deploy/netdata-2)
 [![Netdata](https://img.shields.io/badge/Netdata-v2.10.3-00AB44?logo=netdata)](https://github.com/netdata/netdata)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![GitHub Stars](https://img.shields.io/github/stars/netdata/netdata?style=social)](https://github.com/netdata/netdata)
