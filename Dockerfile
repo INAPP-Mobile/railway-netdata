@@ -1,4 +1,4 @@
-FROM docker.io/netdata/netdata:v2.10.3
+FROM docker.io/netdata/netdata:v2.11.0
 
 ENV NETDATA_PORT=19999
 
