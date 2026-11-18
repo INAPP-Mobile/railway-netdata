@@ -140,7 +140,7 @@ With Railway, you get automatic HTTPS, global CDN, health monitoring, and scalab
 1. Click the **Deploy on Railway** button above
 2. Configure any environment variables (optional)
 3. Click deploy
-4. Access the Netdata dashboard at `https://<your-railway-url>:19999`
+4. Access the Netdata dashboard at `https://{your-railway-url}:19999`
 
 ### Local Development
 
